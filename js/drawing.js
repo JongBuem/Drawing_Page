@@ -1,19 +1,24 @@
 'use strict'; 
 
 const canvas = document.querySelector(".canvas");
-const colors = document.getElementsByClassName("controls_color");
+const colors = document.getElementsByClassName("color_menu_color");
 const range = document.querySelector(".range");
-const mode = document.querySelector(".mode");
+const brush = document.querySelector(".brush");
+const fill = document.querySelector(".fill");
+const size = document.querySelector(".size");
 const save = document.querySelector(".save");
 const ctx = canvas.getContext("2d");
 let drawing = false;//그릴 수 없다
 let filling = false;//초기 mode는 fill
 
-canvas.width = 700;//픽셀을 다루기위해 width지정 (pixel modifier 사이즈 지정)
-canvas.height = 700;//픽셀을 다루기위해 height지정 (pixel modifier 사이즈 지정)
+const SIZE = 1000;
+
+canvas.width = SIZE;//픽셀을 다루기위해 width지정 (pixel modifier 사이즈 지정)
+canvas.height = SIZE;//픽셀을 다루기위해 height지정 (pixel modifier 사이즈 지정)
+canvas.style.cursor="url(img/brush.png),auto";
 
 ctx.fillStyle ="white"; //초기 배경 색상
-ctx.fillRect(0, 0, 700, 700);//배경 크기의 사각형 생성
+ctx.fillRect(0, 0, SIZE, SIZE);//배경 크기의 사각형 생성
 ctx.strokeStyle ="#2c2c2c";//초기 선의 색상
 ctx.lineWidth = 2.5;//초기 선의 굵기
 ctx.fillStyle="#2c2c2c";
@@ -49,20 +54,24 @@ function changeRange(event){
   ctx.lineWidth=size;//선의 굵기 변경
 }
 
+function brushClick(){
+    filling = false;
+    canvas.style.cursor="url(img/brush.png),auto";
+}
+
 function fillClick(){
-    if(filling===true){//mode가 Paint일때
-        filling=false;//Fill로 변경
-        mode.innerHTML="Fill";
-    } else{//mode가 Fill일때
-        filling=true;//Paint로 변경
-        mode.innerHTML="Paint";
-    }
+    filling = true;
+    canvas.style.cursor="url(img/fill.png),auto";
 }
 
 function canvasClick(){
     if(filling){//mode가 Paint일때
-        ctx.fillRect(0, 0, 700, 700); //전체 페이지크기의 사각형 생성
+        ctx.fillRect(0, 0, SIZE, SIZE); //전체 페이지크기의 사각형 생성
     }
+}
+
+function sizeClick(){
+
 }
 
 function saveClick(){
@@ -94,11 +103,18 @@ if(range){
     range.addEventListener("input",changeRange);
 }
 
-if(mode){
-    mode.addEventListener("click",fillClick);
+if(brush){
+    brush.addEventListener("click",brushClick);
+}
+
+if(fill){
+    fill.addEventListener("click",fillClick);
+}
+
+if(size){
+    size.addEventListener("click",sizeClick);
 }
 
 if(save){
     save.addEventListener("click",saveClick)
 }
-
