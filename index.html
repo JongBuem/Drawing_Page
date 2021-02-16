@@ -11,24 +11,35 @@
 </head>
 <body>
     <header class="topmenu"><!--상위메뉴-->
-        <div class="topmenu_menu">
+        <div class="topmenu_file">
             <i class="fas fa-bars"></i>
+            <div class="files">
+                <div class="file_menu_info"><i class="far fa-file"></i>새로 만들기</div>
+                <div class="file_menu_info fileopen">
+                    <i class="far fa-copy"></i>열기
+                    <input type="file" class="fileupload" accept="image/png, image/jpeg, image/jpg">
+                </div>
+                <div class="file_menu_info save"><i class="far fa-save"></i>저장</div>
+                <div class="file_menu_info"><i class="fas fa-save"></i>다른 이름으로 저장</div>
+                <div class="file_menu_info info"><i class="fas fa-info-circle"></i>그림판 정보</div>
+                <div class="file_menu_info"><i class="fas fa-times"></i>끝내기</div>
+            </div>
         </div>
         <div class="topmenu_item">
             <i class="fas fa-paint-brush brush"><div>브러시</div></i>
             <i class="fas fa-fill fill"><div>채우기</div></i>
             <i class="fab fa-stripe-s size">
                 <div>크기</div>     
-                <div class="range_menu">
-                    <div class="range_box range_img"><div style="height: 1px;"></div></div>
-                    <div class="range_box range_img"><div style="height: 3px;"></div></div>
-                    <div class="range_box range_img"><div style="height: 5px;"></div></div>
-                    <div class="range_box"><input type="range" class="range" min="0.1" max="5.0" value="2.5" step="0.1"></div>
+                <div class="size_menu">
+                    <div class="size_menu_info size_button" style="z-index: 1;"><div class="size_img" style="height: 1px;"></div></div>
+                    <div class="size_menu_info size_button" style="z-index: 3;"><div class="size_img" style="height: 3px;"></div></div>
+                    <div class="size_menu_info size_button" style="z-index: 7;"><div class="size_img" style="height: 7px;"></div></div>
+                    <div class="size_menu_info"><input type="range" class="range" min="0.1" max="30" value="3" step="0.1"></div>
                 </div>
             </i>
             <i class="fas fa-palette color">
                 <div>색상</div>
-                <div class="color_menu">
+                <div class="colors">
                     <div class="color_menu_color" style="background-color:#2c2c2c;"></div>
                     <div class="color_menu_color" style="background-color:white;"></div>
                     <div class="color_menu_color" style="background-color:#ff3b30;"></div>
@@ -45,8 +56,9 @@
         </div>
         <div></div>
     </header>
-
     <canvas class="canvas"></canvas>
-    
+    <div id="pictures">
+
+    </div>
 </body>
 </html>

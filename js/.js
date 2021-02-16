@@ -5,21 +5,19 @@ const colors = document.getElementsByClassName("color_menu_color");
 const range = document.querySelector(".range");
 const brush = document.querySelector(".brush");
 const fill = document.querySelector(".fill");
-const fillOpen = document.querySelector(".fileopen");
 const size = document.querySelector(".size");
 const sizeImg = document.getElementsByClassName("size_button");
 const color = document.querySelector(".color");
 const sizeMenu = document.querySelector(".size_menu");
-const colorMenu = document.querySelector(".colors");
+const colorMenu = document.querySelector(".colors")
 const fileButton = document.querySelector(".fa-bars");
 const fileMenu = document.querySelector(".files");
-const fileSave = document.querySelector(".save");
-const fileUpload = document.querySelector(".fileupload");
+const save = document.querySelector(".save");
 const ctx = canvas.getContext("2d");
 
 let drawing = false;//그릴 수 없다
 let filling = false;//초기 mode는 fill
-const SIZE = 540;
+const SIZE = 1000;
 
 canvas.width = SIZE;//픽셀을 다루기위해 width지정 (pixel modifier 사이즈 지정)
 canvas.height = SIZE;//픽셀을 다루기위해 height지정 (pixel modifier 사이즈 지정)
@@ -115,46 +113,24 @@ function handleCM(event){
 }
 
 function menuClear(){
+    fileMenu.classList.remove("file_menu");
     sizeMenu.classList.remove("range_menu");
     colorMenu.classList.remove("color_menu");
-    fileMenu.classList.remove("file_menu");
 }
 
-function fillOpenClick(){
-    fileUpload.click(); //링크를 대신 클릭
+
+if(save){
+    save.addEventListener("click",saveClick)
 }
-
-function fileUploaDing(event){
-    console.log(event.target.files);
-    const newfile = event.target.files[0]; //선택된 파일
-    const reader = new FileReader();
-    reader.readAsDataURL(newfile); //파일을 읽는 메서드 
-
-    reader.onload = function(){
-        var photoFrame = document.createElement("div");
-        photoFrame.style = `background : url(${reader.result}); background-size : cover`;
-        photoFrame.className = "photoFrame";
-        document.getElementById("pictures").appendChild(photoFrame);
-        event.target.value = "";
-    
-        photoFrame.addEventListener("click",function(){
-          document.getElementById("pictures").removeChild(photoFrame);
-        })
-      }
-}
-
 
 
 function init(){
     brush.addEventListener("click",brushClick);
     fill.addEventListener("click",fillClick);
-    size.addEventListener("click",sizeClick);
+    size.addEventListener("mousedown",sizeClick);
     range.addEventListener("input",changeRange);
-    color.addEventListener("click",colorClick);
+    color.addEventListener("mousedown",colorClick);
     fileButton.addEventListener("mousedown",fileButtonClick);
-    fillOpen.addEventListener("click",fillOpenClick);
-    fileSave.addEventListener("click",saveClick);
-    fileUpload.addEventListener("change", fileUploaDing);
     Array.from(colors).forEach(color => color.addEventListener("click",changeColor));//colors를 배열로 만들고 해당 값 클릭시
     Array.from(sizeImg).forEach(sizeimg => sizeimg.addEventListener("click",changeRange));//colors를 배열로 만들고 해당 값 클릭시
 
