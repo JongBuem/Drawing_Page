@@ -7,6 +7,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/drawing.js" defer></script>
+    <script src="js/filebutton.js" defer></script>
     <script src="https://kit.fontawesome.com/9b79e876aa.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -14,15 +15,15 @@
         <div class="topmenu_file">
             <i class="fas fa-bars"></i>
             <div class="files">
-                <div class="file_menu_info"><i class="far fa-file"></i>새로 만들기</div>
+                <div class="file_menu_info newfile"><i class="far fa-file"></i>새로 만들기</div>
                 <div class="file_menu_info fileopen">
                     <i class="far fa-copy"></i>열기
-                    <input type="file" class="fileupload" accept="image/png, image/jpeg, image/jpg">
+                    <input type="file" class="fileupload" accept="image/png, image/jpeg, image/jpg" onchange="fileUploaDing(this.files)">
                 </div>
                 <div class="file_menu_info save"><i class="far fa-save"></i>저장</div>
                 <div class="file_menu_info"><i class="fas fa-save"></i>다른 이름으로 저장</div>
                 <div class="file_menu_info info"><i class="fas fa-info-circle"></i>그림판 정보</div>
-                <div class="file_menu_info"><i class="fas fa-times"></i>끝내기</div>
+                <div class="file_menu_info close"><i class="fas fa-times"></i>끝내기</div>
             </div>
         </div>
         <div class="topmenu_item">
@@ -51,14 +52,37 @@
                     <div class="color_menu_color" style="background-color:#5856d6;"></div>
                 </div>
             </i>
-            <i class="fas fa-eraser"><div>지우개</div></i>
+            <i class="fas fa-eraser eraser"><div>지우개</div></i>
             <i class="fas fa-cube"><div>도형</div></i>
         </div>
         <div></div>
     </header>
-    <canvas class="canvas"></canvas>
-    <div id="pictures">
 
+    <canvas class="canvas"></canvas>
+
+    <footer>
+        <div>
+            <i class="fas fa-arrows-alt"></i>
+            <span class="location"></span>
+        </div>
+        <div></div>
+        <input type="range" class="location_range" min="10" max="565" step="1">
+    </footer>
+
+    <div class="alertbox">
+        <div class="alert_body">
+            <div class="text">변경 내용을 제목 없음에 저장하시겠습니까?</div>
+            <div class="button"> 
+                <div></div>
+                <div>
+                    <button class="alertsave">저장</button>
+                    <button class="alertnewfile">저장 안 함</button>
+                    <button class="alertclose">취소</button>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <div class="alertbg"></div>
 </body>
 </html>

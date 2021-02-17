@@ -1,32 +1,38 @@
 'use strict'; 
 
-const canvas = document.querySelector(".canvas");
-const colors = document.getElementsByClassName("color_menu_color");
-const range = document.querySelector(".range");
+const file = document.querySelector(".fa-bars");
 const brush = document.querySelector(".brush");
 const fill = document.querySelector(".fill");
-const fillOpen = document.querySelector(".fileopen");
 const size = document.querySelector(".size");
-const sizeImg = document.getElementsByClassName("size_button");
 const color = document.querySelector(".color");
+const eraser = document.querySelector(".eraser");
+
+const fileMenu = document.querySelector(".files");
 const sizeMenu = document.querySelector(".size_menu");
 const colorMenu = document.querySelector(".colors");
-const fileButton = document.querySelector(".fa-bars");
-const fileMenu = document.querySelector(".files");
-const fileSave = document.querySelector(".save");
-const fileUpload = document.querySelector(".fileupload");
-const ctx = canvas.getContext("2d");
 
+const range = document.querySelector(".range");
+const sizeImg = document.getElementsByClassName("size_button");
+const colors = document.getElementsByClassName("color_menu_color");
+
+const locationXY = document.querySelector(".location");
+const locationRange = document.querySelector(".location_range");
+
+const canvas = document.querySelector(".canvas");
+const ctx = canvas.getContext("2d");
 let drawing = false;//그릴 수 없다
 let filling = false;//초기 mode는 fill
-const SIZE = 540;
+let traces = false;//초기 그리기전
 
-canvas.width = SIZE;//픽셀을 다루기위해 width지정 (pixel modifier 사이즈 지정)
-canvas.height = SIZE;//픽셀을 다루기위해 height지정 (pixel modifier 사이즈 지정)
+let height = 565;
+let width =height*2.4;
+
+canvas.width = width;//픽셀을 다루기위해 width지정 (pixel modifier 사이즈 지정)
+canvas.height = height;//픽셀을 다루기위해 height지정 (pixel modifier 사이즈 지정)
 canvas.style.cursor="url(img/brush.png),auto";
 
 ctx.fillStyle ="white"; //초기 배경 색상
-ctx.fillRect(0, 0, SIZE, SIZE);//배경 크기의 사각형 생성
+ctx.fillRect(0, 0, width, height);//배경 크기의 사각형 생성
 ctx.strokeStyle ="#2c2c2c";//초기 선의 색상
 ctx.lineWidth = 3;//초기 선의 굵기
 ctx.fillStyle="#2c2c2c";
@@ -43,12 +49,14 @@ function stopDrawing(){
 function onMouseMove(event){ //마우스가 움직 이는 모든 순간에
     const x= event.offsetX;
     const y= event.offsetY;
+    locationXY.innerText=`${x}, ${y} px`;
     if(!drawing){ //클릭하지 않고 마우스를 움직일때
         ctx.beginPath();//Path는 선이며, 새로운 경로를 생성
         ctx.moveTo(x,y);//마우스의 x,y좌표로 Path를 옮긴다
     } else{//클릭 하였을때
         ctx.lineTo(x,y);//Path의 위치에서 지금 위치까지 직선생성
         ctx.stroke();//윤곽선, 획을 긋는다  
+        traces = true;
     }
 }
 
@@ -78,8 +86,8 @@ function fillClick(){
 }
 
 function canvasClick(){
-    if(filling){//mode가 Paint일때
-        ctx.fillRect(0, 0, SIZE, SIZE); //전체 페이지크기의 사각형 생성
+    if(filling){//mode가 Paint일때 
+       ctx.fillRect(0, 0, 1000, 1000); //전체 페이지크기의 사각형 생성
     }
     
 }
@@ -96,19 +104,13 @@ function colorClick(){
     colorMenu.classList.toggle("color_menu");
 }
 
-function fileButtonClick(){
+function fileClick(){
     colorMenu.classList.remove("color_menu");
     sizeMenu.classList.remove("range_menu");
     fileMenu.classList.toggle("file_menu");
 }
 
-function saveClick(){
-    const image = canvas.toDataURL(); //canvas의 png 이미지 URL생성, image/jpeg는 jpg
-    const link = document.createElement("a");//링크생성
-    link.href=image; //링크를 canvas의 이미지 URL를 가리킴
-    link.download=image.png;
-    link.click(); //링크를 대신 클릭
-}
+
 
 function handleCM(event){
     event.preventDefault();//메뉴를 보이지 않게함
@@ -120,44 +122,38 @@ function menuClear(){
     fileMenu.classList.remove("file_menu");
 }
 
-function fillOpenClick(){
-    fileUpload.click(); //링크를 대신 클릭
+
+
+function eraserClick(){
+    filling = false;
+    canvas.style.cursor="url(img/eraser.png),auto";
+    ctx.strokeStyle = "white";
+    ctx.fillStyle = "white";//배경 색상
+    ctx.lineWidth=10;//선의 굵기 변경
+    menuClear();
 }
 
-function fileUploaDing(event){
-    console.log(event.target.files);
-    const newfile = event.target.files[0]; //선택된 파일
-    const reader = new FileReader();
-    reader.readAsDataURL(newfile); //파일을 읽는 메서드 
-
-    reader.onload = function(){
-        var photoFrame = document.createElement("div");
-        photoFrame.style = `background : url(${reader.result}); background-size : cover`;
-        photoFrame.className = "photoFrame";
-        document.getElementById("pictures").appendChild(photoFrame);
-        event.target.value = "";
-    
-        photoFrame.addEventListener("click",function(){
-          document.getElementById("pictures").removeChild(photoFrame);
-        })
-      }
+const changeLocationRange=(event)=>{
+    const height = event.target.value;//선의 굵기 값
+    canvas.height = height;//픽셀을 다루기위해 height지정 (pixel modifier 사이즈 지정)
+    canvas.width = height*2.4;//픽셀을 다루기위해 width지정 (pixel modifier 사이즈 지정)
 }
 
-
+const locationleave = () => { locationXY.innerText="";}
 
 function init(){
+    file.addEventListener("mousedown",fileClick);
     brush.addEventListener("click",brushClick);
     fill.addEventListener("click",fillClick);
     size.addEventListener("click",sizeClick);
     range.addEventListener("input",changeRange);
     color.addEventListener("click",colorClick);
-    fileButton.addEventListener("mousedown",fileButtonClick);
-    fillOpen.addEventListener("click",fillOpenClick);
-    fileSave.addEventListener("click",saveClick);
-    fileUpload.addEventListener("change", fileUploaDing);
+    eraser.addEventListener("click",eraserClick)
+    locationRange.addEventListener("input",changeLocationRange);
+
     Array.from(colors).forEach(color => color.addEventListener("click",changeColor));//colors를 배열로 만들고 해당 값 클릭시
     Array.from(sizeImg).forEach(sizeimg => sizeimg.addEventListener("click",changeRange));//colors를 배열로 만들고 해당 값 클릭시
-
+    canvas.addEventListener("mouseleave",locationleave);
     canvas.addEventListener("mousemove",onMouseMove); //마우스가 움직일때
     canvas.addEventListener("mousedown",startDrawing); //마우스를 클릭 할 때
     canvas.addEventListener("mouseup",stopDrawing); //마우스를 클리하고 올릴 때
