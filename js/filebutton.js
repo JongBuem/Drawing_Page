@@ -19,7 +19,7 @@ function fileUploaDing(files){
 	reader.onload = function(event){
 		const img = new Image();
 		img.onload = function(){
-			ctx.drawImage(img,0,0,width,height);
+			ctx.drawImage(img,0,0,canvas.width,canvas.height);
 		}
 		img.src = event.target.result;
 	}
