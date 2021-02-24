@@ -2,11 +2,11 @@
 
 const fileOpen = document.querySelector(".fileopen");
 const fileUpload = document.querySelector(".fileupload");
-const fileSave = document.querySelector(".save");
+const fileSave = document.querySelector(".filesave");
 const newFile = document.querySelector(".newfile");
 const filePageInfo=document.querySelector(".pageinfo");
 const pageInfoLink=document.querySelector(".pageinfolink");
-const fileClose = document.querySelector(".close");
+const fileClose = document.querySelector(".pageclose");
 const alertsaveButton = document.querySelector(".alertsave");
 const alertnewfileButton = document.querySelector(".alertnewfile");
 const alertcloseButton = document.querySelector(".alertclose");
@@ -43,7 +43,7 @@ const newfile = {//새로 만들기
         ctx.clearRect(0, 0, canvas.width, canvas.height);//canvas크기의 영역을 비움
     }
 }
-
+close
 function fileUploaDing(files){//파일이 업로드 되면
     const file = files[0];//업로드된 파일	
 	const reader = new FileReader();//파일을 읽어오는 역활
