@@ -1,3 +1,11 @@
+:root {
+  --topmenu-shadow: 0 4px 6px rgba(50, 50, 3, 0.1), 0 1px 3px rgba(0, 0, 0, 0.8);
+  --shadow: 0 4px 6px rgba(50, 50, 3, 0.1), 0 1px 1px rgba(0, 0, 0, 0.8);
+  --border: 1px solid rgba(0, 0, 0, 0.2);
+  --menu-background-color: #fff;
+  --menu-hover-background-color: #c1c1c1;
+}
+
 @import "reset.css";
 body {
   background-color: #f6f9fc;
@@ -19,30 +27,29 @@ html::-webkit-scrollbar {
 
 .topmenu {
   display: flex;
-  justify-content: space-between;
   font-size: 25px;
   width: 100%;
   height: 60px;
   margin: 0px;
   align-items: center;
-  background-color: #c1c1c1;
-  box-shadow: 0 4px 6px rgba(50, 50, 3, 0.1), 0 1px 3px rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  justify-content: space-between;
+  background-color: var(--menu-hover-background-color);
   color: rgba(22, 19, 19, 0.8);
+  box-shadow: var(--topmenu-shadow);
+  border: var(--border);
   position: sticky;
   top: 0;
 }
 
 .topmenu i:hover {
-  color: #fff;
+  color: var(--menu-background-color);
   background-color: #424242;
   padding: 5px 0px;
   width: 80px;
   text-align: center;
   border-radius: 3px;
-  box-shadow: 0 4px 6px rgba(50, 50, 3, 0.11), 0 1px 3px rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  font-weight: 800;
+  box-shadow: var(--topmenu-shadow);
+  border: var(--border);
 }
 
 .topmenu_file .fa-bars {
@@ -63,15 +70,15 @@ html::-webkit-scrollbar {
   position: fixed;
   flex-direction: column;
   flex-wrap: wrap;
-  background-color: #fff;
+  background-color: var(--menu-background-color);
   color: rgb(27, 26, 26);
   font-size: 18px;
   width: 300px;
   height: 304px;
   margin-top: 20px;
   border-radius: 3px;
-  box-shadow: 0 4px 6px rgba(50, 50, 3, 0.1), 0 1px 1px rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow);
+  border: var(--border);
 }
 
 .file_menu .file_menu_info {
@@ -79,7 +86,7 @@ html::-webkit-scrollbar {
 }
 
 .file_menu .info {
-  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  border-top: var(--border);
 }
 
 .file_menu .file_menu_info i {
@@ -88,12 +95,12 @@ html::-webkit-scrollbar {
 
 .file_menu .file_menu_info:hover {
   cursor: pointer;
-  background-color: #c1c1c1;
   margin: 1px;
   width: 98%;
   border-radius: 3px;
-  box-shadow: 0 4px 6px rgba(50, 50, 3, 0.1), 0 1px 1px rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow);
+  border: var(--border);
+  background-color: var(--menu-hover-background-color);
 }
 
 .file_menu .file_menu_info i {
@@ -126,15 +133,15 @@ html::-webkit-scrollbar {
 .size .range_menu {
   display: flex;
   position: fixed;
-  flex-direction: column;
-  align-items: center;
   flex-wrap: wrap;
-  background-color: #fff;
+  align-items: center;
+  flex-direction: column;
   width: 150px;
   margin-top: 10px;
   border-radius: 3px;
-  box-shadow: 0 4px 6px rgba(50, 50, 3, 0.1), 0 1px 1px rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow);
+  border: var(--border);
+  background-color: var(--menu-background-color);
 }
 
 .size .range_menu .size_menu_info {
@@ -142,9 +149,9 @@ html::-webkit-scrollbar {
   width: 150px;
   height: 30px;
   align-items: center;
-  background-color: #fff;
   justify-content: center;
   z-index: 999;
+  background-color: var(--menu-background-color);
 }
 
 .size .range_menu .size_menu_info div {
@@ -161,13 +168,13 @@ html::-webkit-scrollbar {
 }
 
 .size .range_menu .size_button:hover {
-  background-color: #c1c1c1;
+  background-color: var(--menu-hover-background-color);
   margin-bottom: 5px;
   width: 98%;
   text-align: center;
   border-radius: 3px;
-  box-shadow: 0 4px 6px rgba(50, 50, 3, 0.1), 0 1px 1px rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow);
+  border: var(--border);
 }
 
 .color .color_menu {
@@ -177,31 +184,31 @@ html::-webkit-scrollbar {
   flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
-  background-color: #fff;
   width: 200px;
   height: 100px;
   margin-top: 10px;
   border-radius: 3px;
-  box-shadow: 0 4px 6px rgba(50, 50, 3, 0.1), 0 1px 1px rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow);
+  border: var(--border);
+  background-color: var(--menu-background-color);
 }
 
 .color .color_menu .color_menu_color {
   width: 30px;
   height: 30px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: var(--border);
   border-radius: 25px;
   cursor: pointer;
   align-items: center;
 }
 
 .color .color_menu .color_menu_color:hover {
-  background-color: #c1c1c1;
+  background-color: var(--menu-hover-background-color);
   margin-bottom: 5px;
   text-align: center;
   border-radius: 3px;
-  box-shadow: 0 4px 6px rgba(50, 50, 3, 0.1), 0 1px 1px rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow);
+  border: var(--border);
 }
 
 .color .color_menu .color_menu_color:active {
@@ -214,7 +221,7 @@ html::-webkit-scrollbar {
   top: 70px;
   background-color: white;
   border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(50, 50, 3, 0.11), 0 1px 3px rgba(0, 0, 0, 0.8);
+  box-shadow: var(--topmenu-shadow);
   z-index: -1;
 }
 
@@ -234,8 +241,8 @@ html::-webkit-scrollbar {
   height: 120px;
   border-radius: 5px;
   background: rgb(250, 255, 255);
-  box-shadow: 0 4px 6px rgba(50, 50, 3, 0.1), 0 1px 1px rgba(0, 0, 0, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.4);
+  box-shadow: var(--shadow);
+  border: var(--border);
 }
 
 .alert .alert_body {
@@ -245,7 +252,7 @@ html::-webkit-scrollbar {
   width: 93%;
   height: 70%;
   background: white;
-  border: 1px solid rgba(0, 0, 0, 0.4);
+  border: var(--border);
 }
 
 .alert .alert_body .text {
@@ -275,10 +282,10 @@ footer {
   line-height: 25px;
   width: 100%;
   height: 25px;
-  background-color: #c1c1c1;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: var(--border);
   position: absolute;
   bottom: 0;
+  background-color: var(--menu-hover-background-color);
 }
 
 footer i {
@@ -296,12 +303,12 @@ footer input[type="range"]::-webkit-slider-runnable-track {
   height: 5px;
   background: #f3f3f3;
   border-radius: 25px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: var(--border);
 }
 
 footer input[type="range"]::-webkit-slider-thumb {
   box-shadow: 0.5px 0.5px 0.5px #000000;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: var(--border);
   height: 20px;
   width: 8px;
   border-radius: 5px;
