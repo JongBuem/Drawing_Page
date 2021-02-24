@@ -7,8 +7,8 @@
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/drawing.js" defer></script>
-    <script src="js/filebutton.js" defer></script>
-    <script src="js/figurebutton.js"></script>
+    <script src="js/filemenu.js" defer></script>
+    <script src="js/topmenu.js" defer></script>
     <script src="https://kit.fontawesome.com/9b79e876aa.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -23,7 +23,10 @@
                 </div>
                 <div class="file_menu_info save"><i class="far fa-save"></i>저장</div>
                 <div class="file_menu_info"><i class="fas fa-save"></i>다른 이름으로 저장</div>
-                <div class="file_menu_info info"><i class="fas fa-info-circle"></i>그림판 정보</div>
+                <div class="file_menu_info pageinfo">
+                    <i class="fas fa-info-circle"></i>그림판 정보
+                    <a href="https://github.com/JongBuem/Drawing_Page" class="pageinfolink" target="_blank"></a>    
+                </div>
                 <div class="file_menu_info close"><i class="fas fa-times"></i>끝내기</div>
             </div>
         </div>
@@ -59,9 +62,9 @@
         <div></div>
     </header>
 
-    <canvas class="canvas"></canvas>
+    <canvas class="canvas" id="canvas"></canvas><!--그림판-->
 
-    <footer>
+    <footer><!--하위메뉴-->
         <div>
             <i class="fas fa-arrows-alt"></i>
             <span class="location"></span>
@@ -70,7 +73,7 @@
         <input type="range" class="location_range" min="10" max="565" step="1" value="565">
     </footer>
 
-    <div class="alertbox">
+    <div class="alertbox"><!--파일메뉴-->
         <div class="alert_body">
             <div class="text">변경 내용을 제목 없음에 저장하시겠습니까?</div>
             <div class="button"> 
