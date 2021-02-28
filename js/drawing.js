@@ -40,10 +40,10 @@ function down(event){
     if(!figureclick){//도형그리기 불가 일때
         drawing = true;//그리기 가능
     }
-    menu.clear();//모든 메뉴 제거
+    menu.clear();//모든 메뉴 닫기
 }
 
-function onMouseMove(event){
+function move(event){
     moveX= event.offsetX;//마우스의 x좌표
     moveY= event.offsetY;//마우스의 y좌표
     locationXY.innerText=`${moveX}, ${moveY} px`;//하위 마우스 좌표값
@@ -90,18 +90,18 @@ const change ={//스타일 변경
 
 function init(){
     canvas.addEventListener("mousedown",down);//canvas에서 마우스를 누르면
-    canvas.addEventListener("mousemove",onMouseMove);//canvas에서 마우스를 움직이면
+    canvas.addEventListener("mousemove",move);//canvas에서 마우스를 움직이면
     canvas.addEventListener("mouseup",up);//canvas에서 마우스를 눌렀다 올리면
     canvas.addEventListener("click", ()=>{//canvas에서 마우스를 클릭하면 
         if(filling){//채우기가 가능 하면
-            ctx.fillRect(0, 0, canvas.width, canvas.height); //전체 페이지크기에 채우기
+            ctx.fillRect(0, 0, canvas.width, canvas.height); //전체 페이지크기로 채우기
         }
     });
     canvas.addEventListener("contextmenu", (event) => event.preventDefault());//canvas에서 마우스의 우측을 클릭하면 메뉴를 보이지 않게함
     canvas.addEventListener("mouseleave",() => locationXY.innerText="");//마우스가 canvas에서 벗어나면 마우스 좌표값 비우기
     locationRange.addEventListener("input",change.canvasSize);//하단 input 변경하면
-    range.addEventListener("input",change.lineWidth);//사이즘메뉴의 input 변경하면
-    Array.from(sizeImg).forEach(sizeimg => sizeimg.addEventListener("click",change.lineWidth));//colors를 배열로 만들고 해당 값 클릭하면
+    range.addEventListener("input",change.lineWidth);//사이즈메뉴의 input 변경하면
+    Array.from(sizeImg).forEach(sizeimg => sizeimg.addEventListener("click",change.lineWidth));//선의 굵기 이미지를 배열로 만들고 해당 값 클릭하면
     Array.from(colors).forEach(color => color.addEventListener("click",change.color));//colors를 배열로 만들고 해당 값 클릭하면
 }
 

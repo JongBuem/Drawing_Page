@@ -13,9 +13,9 @@ const colorMenu = document.querySelector(".colors");
 
 const menu = {//상단메뉴
     fileClick(){//파일메뉴 클릭
-        colorMenu.classList.remove("color_menu");//컬러메뉴 삭제
-        sizeMenu.classList.remove("range_menu");//사이즈메뉴 삭제
-        fileMenu.classList.toggle("file_menu");//파일메뉴 추가 및 삭제
+        colorMenu.classList.remove("color_menu");//컬러메뉴 닫기
+        sizeMenu.classList.remove("range_menu");//사이즈메뉴 닫기
+        fileMenu.classList.toggle("file_menu");//파일메뉴 추가 및 닫기
     },
     brushClick(){//브러시메뉴 클릭
         filling = false;//채우기 불가
@@ -29,14 +29,14 @@ const menu = {//상단메뉴
         canvas.style.cursor="url(img/fill.png),auto";//커서 이미지 변경
     },
     sizeClick(){//사이즈메뉴 클릭
-        colorMenu.classList.remove("color_menu");//컬러메뉴 삭제
-        fileMenu.classList.remove("file_menu");//파일메뉴 삭제
-        sizeMenu.classList.toggle("range_menu");//사이즈메뉴 추가 및 삭제
+        colorMenu.classList.remove("color_menu");//컬러메뉴 닫기
+        fileMenu.classList.remove("file_menu");//파일메뉴 닫기
+        sizeMenu.classList.toggle("range_menu");//사이즈메뉴 추가 및 닫기
     },
     colorClick(){//컬러메뉴 클릭
-        sizeMenu.classList.remove("range_menu");//사이즈메뉴 삭제
-        fileMenu.classList.remove("file_menu");//파일메뉴 삭제
-        colorMenu.classList.toggle("color_menu");//컬러메뉴 추가 및 삭제
+        sizeMenu.classList.remove("range_menu");//사이즈메뉴 닫기
+        fileMenu.classList.remove("file_menu");//파일메뉴 닫기
+        colorMenu.classList.toggle("color_menu");//컬러메뉴 추가 및 닫기
     },
     eraserClick(){//지우개메뉴 클릭
         filling = false;//채우기 불가
@@ -50,10 +50,10 @@ const menu = {//상단메뉴
         figureclick=true;//도형그리기 가능
         canvas.style.cursor="url(img/cross.png),auto";//커서 이미지 변경
     },
-    clear(){//메뉴지우기
-        sizeMenu.classList.remove("range_menu");//클릭메뉴 삭제
-        colorMenu.classList.remove("color_menu");//컬러메뉴 삭제
-        fileMenu.classList.remove("file_menu");//파일메뉴 삭제
+    clear(){//모든메뉴 닫기
+        sizeMenu.classList.remove("range_menu");//클릭메뉴 닫기
+        colorMenu.classList.remove("color_menu");//컬러메뉴 닫기
+        fileMenu.classList.remove("file_menu");//파일메뉴 닫기
     }
 };
 

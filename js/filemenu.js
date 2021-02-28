@@ -43,8 +43,8 @@ const newfile = {//새로 만들기
         ctx.clearRect(0, 0, canvas.width, canvas.height);//canvas크기의 영역을 비움
     }
 }
-close
-function fileUploaDing(files){//파일이 업로드 되면
+
+function fileUploaDing(files){//이미지파일 불러오기
     const file = files[0];//업로드된 파일	
 	const reader = new FileReader();//파일을 읽어오는 역활
 	reader.readAsDataURL(file);//파일을 URL형태로 읽어옴
@@ -58,7 +58,7 @@ function fileUploaDing(files){//파일이 업로드 되면
 	}
 }
 
-function fileSaveClick(){//현재 canvas그림을 이미지로 저장
+function fileSaveClick(){//현재 canvas그림을 이미지파일로 저장
     const image = canvas.toDataURL(); //canvas의 그림을 이미지와 데이터 URL로 생성, 이미지는 png 형식
     const link = document.createElement("a");//a element를 생성
     link.href=image; //a element의 주소를 이미지 데이터 URL로 지정
